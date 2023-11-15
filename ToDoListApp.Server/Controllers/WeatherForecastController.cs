@@ -8,7 +8,7 @@ namespace ToDoListApp.Server.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing2", "Bracing2", "Chilly2", "Cool2", "Mild", "Warm", "Balmy", "Hot2", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;

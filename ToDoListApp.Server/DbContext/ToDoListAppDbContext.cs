@@ -12,5 +12,6 @@ namespace ToDoListApp.Server.DbContext
         }
 
         //TODO ADD DBSETS
+        public DbSet<ToDoItem> ToDoItems { get; set; }
     }   
 }
