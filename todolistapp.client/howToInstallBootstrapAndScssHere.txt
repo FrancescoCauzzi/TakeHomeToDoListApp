@@ -1,0 +1,48 @@
+N.B.: ng commands give me an error: L'esecuzione di script è disabilitata nel sistema in uso. Per ulteriori informazioni,
+vedere about_Execution_Policies all'indirizzo https://go.microsoft.com/fwlink/?LinkID=135170.
+In riga:1 car:1
++ ng config schematics.@schematics/angular:component.styleext scss
++ ~~
+    + CategoryInfo          : Errore di protezione: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess I did install the CLI globally but I still see this error if I run the previous command
+
+    This error was resolved by this command: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+  But it's suggested that is not safe so to revert this action:
+  Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Restricted
+
+
+Bootstrap:
+1. Install Bootstrap:
+    Navigate to the root directory of your Angular project in the terminal.
+    Run npm install bootstrap to install Bootstrap. This command adds Bootstrap to your project's dependencies.
+2. Include Bootstrap in Your Project:
+    Open angular.json in your project.
+    Add the path to the Bootstrap CSS file in the styles array. It should look something like "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+3. Include Bootstrap JavaScript:
+    In Angular, it's best to include JavaScript files in the angular.json file under the "scripts" array, which is part of the "architect/build/options" section.
+    Add the path to Bootstrap's JavaScript bundle:
+  "scripts": [
+  "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+  ]
+4. Rebuild the application (the ng commands does not work and I     had to restart the server from Vistual Studio IDE)
+
+
+SCSS:
+1. Updating an Existing Angular App to Use SCSS:
+
+    To update your CLI configuration for SCSS, there are two approaches:
+
+      1. Using the CLI Command: Execute ng config schematics.@schematics/angular:component.styleext scss in your terminal. This command might modify the angular.json in the wrong place, so ensure it is modified correctly under your project​.
+
+      2. (I used this one) Manually Adding to angular.json: Add the following schematics reference to your angular.json file:
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+
+2. After installing Bootstrap (npm install bootstrap), you can import Bootstrap SCSS in your styles.scss file:
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+3. modify all the old path strings referring to .css file to .scss file in the angula.json configuration file and also in the app.conponents.ts
+
