@@ -9,6 +9,7 @@ In riga:1 car:1
     This error was resolved by this command: Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
   But it's suggested that is not safe so to revert this action:
   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Restricted
+Update(22/11/2023): solve this by removing the ng.ps1 file in the npm directory (path: C:\Users\{your-username}\AppData\Roaming\npm)
 
 
 Bootstrap:
@@ -25,6 +26,7 @@ Bootstrap:
   "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
   ]
 4. Rebuild the application (the ng commands does not work and I     had to restart the server from Vistual Studio IDE)
+
 
 
 SCSS:

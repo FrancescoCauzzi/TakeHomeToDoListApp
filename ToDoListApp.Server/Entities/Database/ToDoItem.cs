@@ -1,4 +1,4 @@
-﻿namespace ToDoListApp.Server.Entities
+﻿namespace ToDoListApp.Server.Entities.Database
 {
     public class ToDoItem
     {

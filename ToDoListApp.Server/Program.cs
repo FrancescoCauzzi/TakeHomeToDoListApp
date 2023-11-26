@@ -22,6 +22,10 @@ namespace ToDoListApp.Server
                 options.UseNpgsql(builder.Configuration.GetConnectionString("TodoListConnectionString"));
             });
 
+            // DEPENDENCY INJECTIONS
+            // DI for the database
+            builder.Services.AddScoped<ToDoListAppDbContext, ToDoListAppDbContext>();
+
             var app = builder.Build();
 
             app.UseDefaultFiles();

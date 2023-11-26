@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
-using ToDoListApp.Server.Entities;
+using ToDoListApp.Server.Entities.Database;
 
 namespace ToDoListApp.Server.DbContext
 {
