@@ -1,36 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface ToDoItem {
+  id: number;
+  title: string;
+  content: string;
 }
 
+interface HttpResponse {
+  success: boolean;
+  message: string;
+  data: ToDoItem[];
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+  public toDoItems: ToDoItem[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getForecasts();
+    this.getToDoItems();
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  getToDoItems() {
+    this.http
+      .get<HttpResponse>('https://localhost:7259/API/ToDoItem/GetAllToDoItems')
+      .subscribe(
+        (result) => {
+          console.log(result);
+          console.log(result.data);
+
+          this.toDoItems = result.data;
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 
   title = 'todolistapp.client';

@@ -23,6 +23,15 @@ namespace ToDoListApp.Server
                 options.UseNpgsql(builder.Configuration.GetConnectionString("TodoListConnectionString"));
             });
 
+            // Add CORS policy to avoid error messages in cross-origin requests when communicating with a front-end app
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("https://localhost:4200")
+                                      .AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()
+                                      );
+            });
+
             // DEPENDENCY INJECTIONS
             // DI for the database
             builder.Services.AddScoped<ToDoListAppDbContext, ToDoListAppDbContext>();
@@ -34,6 +43,9 @@ namespace ToDoListApp.Server
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            // Apply the CORS policy
+            app.UseCors("AllowSpecificOrigin");
 
             // Configure the HTTP request pipeline.
 
@@ -50,6 +62,8 @@ namespace ToDoListApp.Server
             }
 
             app.MapFallbackToFile("/index.html");
+
+            
 
             app.Run();
         }
