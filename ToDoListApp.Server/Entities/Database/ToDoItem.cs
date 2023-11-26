@@ -1,9 +1,14 @@
-﻿namespace ToDoListApp.Server.Entities.Database
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ToDoListApp.Server.Entities.Database
 {
     public class ToDoItem
     {
-        public Guid Id { get; set; }
-        public string Title { get; set; } = "";
-        public string Content { get; set; } = "";
+
+        [Key]
+        public int Id { get; set; } // Now an auto-incrementing integer
+        public string Title { get; set; } // No default value assigned
+        public string Content { get; set; } // No default value assigned
+        
     }
 }

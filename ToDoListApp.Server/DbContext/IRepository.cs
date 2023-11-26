@@ -8,16 +8,16 @@ namespace ToDoListApp.Server.DbContext
         DataOperationResult<List<T>> GetAll();
 
         // Get a single entity by ID
-        DataOperationResult<T> GetEntityById(Guid id);
+        DataOperationResult<T> GetEntityById(int id);
 
         // Add entity
         OperationResult AddEntity(T entity);
 
         // Modify Entity
-        OperationResult ModifyEntity(Guid id, T entity);
+        OperationResult ModifyEntity(int id, T entity);
 
         // Delete an entity
-        OperationResult DeleteEntity(Guid id);
+        OperationResult DeleteEntity(int id);
         
     }
 }

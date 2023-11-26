@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoListApp.Server.DbContext;
+using ToDoListApp.Server.Entities.Database;
 
 namespace ToDoListApp.Server
 {
@@ -25,6 +26,9 @@ namespace ToDoListApp.Server
             // DEPENDENCY INJECTIONS
             // DI for the database
             builder.Services.AddScoped<ToDoListAppDbContext, ToDoListAppDbContext>();
+
+            // DI repository pattern ToDoItem
+            builder.Services.AddScoped<IRepository<ToDoItem>, RepositoryToDoItem>();
 
             var app = builder.Build();
 
