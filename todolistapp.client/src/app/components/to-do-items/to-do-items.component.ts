@@ -12,6 +12,7 @@ import { CustomHttpResponse } from 'src/app/CustomHttpResponse';
 })
 export class ToDoItemsComponent implements OnInit {
   toDos: ToDoItem[] = [];
+  currentItemToDelete: ToDoItem | null = null;
   @Input() toDoItem: ToDoItem = {
     id: 0,
     title: '',
@@ -57,5 +58,17 @@ export class ToDoItemsComponent implements OnInit {
         console.error('Error fetching ToDo items:', error);
       }
     );
+  }
+  openDeleteModal(item: ToDoItem) {
+    console.log('Opening delete modal for item:', item);
+
+    this.currentItemToDelete = item;
+  }
+
+  confirmDelete() {
+    if (this.currentItemToDelete) {
+      // Perform delete action
+      this.onDelete(this.currentItemToDelete);
+    }
   }
 }
