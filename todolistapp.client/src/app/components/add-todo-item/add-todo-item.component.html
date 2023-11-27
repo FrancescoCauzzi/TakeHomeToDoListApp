@@ -1,0 +1,13 @@
+<!-- [(ngModel)]="title" -->
+<form class="mb-3" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="text" class="form-label fw-bold">Title</label>
+    <input class="form-control" type="text" name="title" id="title" [(ngModel)]="title" placeholder="Add ToDo">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label  fw-bold">Day & Time</label>
+    <input class="form-control" type="text" name="content" id="content" [(ngModel)]="content"
+      placeholder="Add Day & Time">
+  </div>
+  <input type="submit" value="Save" class="btn btn-primary mt-2 __submit-btn">
+</form>

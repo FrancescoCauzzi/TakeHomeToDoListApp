@@ -4,6 +4,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { ToDoItem } from 'src/app/ToDoItem';
 import { TodoService } from '../../services/todo.service';
 import { CustomHttpResponse } from 'src/app/CustomHttpResponse';
+import { ITodoNoId } from 'src/app/ITodoNoId';
 
 @Component({
   selector: 'app-to-do-items',
@@ -70,5 +71,9 @@ export class ToDoItemsComponent implements OnInit {
       // Perform delete action
       this.onDelete(this.currentItemToDelete);
     }
+  }
+
+  addTodo(todo: ITodoNoId) {
+    console.log(todo);
   }
 }
