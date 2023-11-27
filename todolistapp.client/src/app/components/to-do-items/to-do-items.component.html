@@ -1,0 +1,28 @@
+<p *ngIf="!toDos"><em>Loading... Please refresh once the ASP.NET backend has started. See <a
+      href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em>
+</p>
+
+<table *ngIf="toDos" class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Id</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of toDos; let ind = index">
+      <th scope="row">{{ ind + 1 }}</th>
+      <td>{{ item.title }}</td>
+      <td>{{ item.content }}</td>
+      <td>{{ item.id }}</td>
+      <td class="d-flex gap-3">
+        <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon"></fa-icon>
+        <fa-icon [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan" class="__fa-icon"></fa-icon>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

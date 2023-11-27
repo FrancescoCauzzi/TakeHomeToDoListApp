@@ -1,25 +1,8 @@
-<h1 id="tableLabel">To Do</h1>
+<div class="d-flex justify-content-between">
+  <h1 id="tableLabel">To Do</h1>
+  <app-button color="green" text="Add task" (btnClick)="toggleAddToDo()"></app-button>
 
-<p *ngIf="!toDoItems"><em>Loading... Please refresh once the ASP.NET backend has started. See <a
-      href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em>
-</p>
-
-<table *ngIf="toDoItems" class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Content</th>
-      <th scope="col">Id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of toDoItems; let ind = index">
-      <th scope="row">{{ ind + 1 }}</th>
-      <td>{{ item.title }}</td>
-      <td>{{ item.content }}</td>
-      <td>{{ item.id }}</td>
-    </tr>
-
-  </tbody>
-</table>
+</div>
+<div>
+  <app-to-do-items></app-to-do-items>
+</div>
