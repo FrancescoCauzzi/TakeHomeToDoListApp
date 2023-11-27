@@ -20,7 +20,8 @@
       <td>{{ item.id }}</td>
       <td class="d-flex gap-3">
         <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon"></fa-icon>
-        <fa-icon [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan" class="__fa-icon"></fa-icon>
+        <fa-icon (click)="(onDelete(item))" [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan"
+          class="__fa-icon"></fa-icon>
       </td>
     </tr>
 
