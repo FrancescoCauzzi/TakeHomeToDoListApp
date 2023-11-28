@@ -11,6 +11,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { ToDoItemsComponent } from './components/to-do-items/to-do-items.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddTodoItemComponent } from './components/add-todo-item/add-todo-item.component';
+import { ModifyTodoItemComponent } from './components/modify-todo-item/modify-todo-item.component';
+import { DeleteTodoItemComponent } from './components/delete-todo-item/delete-todo-item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AddTodoItemComponent } from './components/add-todo-item/add-todo-item.c
     ButtonComponent,
     ToDoItemsComponent,
     AddTodoItemComponent,
+    ModifyTodoItemComponent,
+    DeleteTodoItemComponent,
   ],
   imports: [BrowserModule, HttpClientModule, FontAwesomeModule, FormsModule],
   providers: [],

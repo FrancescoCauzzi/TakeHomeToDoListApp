@@ -5,7 +5,8 @@ import { ToDoItem } from 'src/app/IToDoItem';
 import { TodoService } from '../../services/todo.service';
 import { IHttpResponseItemList } from 'src/app/IHttpResponseItemList';
 import { IHttpResponseItem } from 'src/app/IHttpResponseItem';
-//import { ITodoNoId } from 'src/app/ITodoNoId';
+import { UiService } from 'src/app/services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-items',
@@ -14,7 +15,9 @@ import { IHttpResponseItem } from 'src/app/IHttpResponseItem';
 })
 export class ToDoItemsComponent implements OnInit {
   toDos: ToDoItem[] = [];
-  currentItemToDelete: ToDoItem | null = null;
+  showDeleteTodo: boolean = false;
+  subscription: Subscription = new Subscription();
+
   @Input() toDoItem: ToDoItem = {
     id: 0,
     title: '',
@@ -22,8 +25,16 @@ export class ToDoItemsComponent implements OnInit {
   };
   public faTrashCan = faTrashCan;
   public faPenToSquare = faPenToSquare;
+  currentItemToDelete: ToDoItem = {
+    title: '',
+    content: '',
+  };
 
-  constructor(private toDoService: TodoService) {}
+  constructor(private toDoService: TodoService, private uiService: UiService) {
+    this.subscription = this.uiService
+      .onToggle()
+      .subscribe((value) => (this.showDeleteTodo = value));
+  }
 
   ngOnInit(): void {
     this.toDoService.getToDoItems().subscribe(
@@ -48,8 +59,9 @@ export class ToDoItemsComponent implements OnInit {
       (httpResponse) => {
         // Check if the response is successful and has data
         if (httpResponse.success) {
+          console.log(toDoItem);
           console.log('ToDo item deleted successfully:', httpResponse.message);
-          this.toDos = this.toDos.filter((item) => item.id !== toDoItem.id); // Remove the deleted item from the list
+          this.toDos = this.toDos.filter((t) => t.id !== toDoItem.id); // Remove the deleted item from the list
         } else {
           // Handle the case where the response is not successful
           console.error('Failed to load ToDo items:', httpResponse.message);
@@ -61,24 +73,12 @@ export class ToDoItemsComponent implements OnInit {
       }
     );
   }
-  openDeleteModal(item: ToDoItem) {
-    console.log('Opening delete modal for item:', item);
-
-    this.currentItemToDelete = item;
-  }
-
-  confirmDelete() {
-    if (this.currentItemToDelete) {
-      // Perform delete action
-      this.onDelete(this.currentItemToDelete);
-    }
-  }
 
   addTodo(item: ToDoItem) {
     this.toDoService.addToDoItem(item).subscribe(
       (response: IHttpResponseItem) => {
         if (response.success) {
-          console.log(response.item);
+          //console.log(response.item);
           this.toDos.push(response.item);
         } else {
           console.error('Failed to add item:', response.message);

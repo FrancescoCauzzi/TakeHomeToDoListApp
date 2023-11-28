@@ -1,5 +1,5 @@
 <!-- [(ngModel)]="title" -->
-<form class="mb-3" (ngSubmit)="onSubmit()">
+<form *ngIf="showAddTodo" class="mb-3" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label for="text" class="form-label fw-bold">Title</label>
     <input class="form-control" type="text" name="title" id="title" [(ngModel)]="title" placeholder="Add ToDo">

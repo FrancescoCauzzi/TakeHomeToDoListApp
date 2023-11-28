@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-between">
-  <h1 id="tableLabel">To Do</h1>
-  <app-button color="green" text="Add To Do" (btnClick)="toggleAddToDo()"></app-button>
+  <h1 id="tableLabel">{{ title }}</h1>
+  <app-button color="{{ showAddTodo ? 'red' : 'green' }}" text="{{ showAddTodo ? 'Close' : 'Add' }}"
+    (btnClick)="toggleAddToDo()"></app-button>
 
 </div>
 <div>

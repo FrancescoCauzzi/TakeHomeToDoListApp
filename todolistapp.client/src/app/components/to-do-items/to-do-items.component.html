@@ -19,34 +19,19 @@
       <td>{{ item.content }}</td>
       <td>{{ item.id }}</td>
       <td class="d-flex gap-3">
-        <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon"></fa-icon>
-        <fa-icon (click)="openDeleteModal(item)" [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan" class="__fa-icon"
-          data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-
+        <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon" data-bs-toggle="modal"
+          data-bs-target="#staticBackdropEdit"></fa-icon>
+        <app-modify-todo-item></app-modify-todo-item>
+        <fa-icon [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan" class="__fa-icon" data-bs-toggle="modal"
+          [attr.data-bs-target]="'#staticBackdrop-' + item.id">
         </fa-icon>
+        <app-delete-todo-item [itemToDelete]="item" (deleteRequest)="onDelete($event)"></app-delete-todo-item>
       </td>
+
+
+
+
     </tr>
 
   </tbody>
 </table>
-
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Confirmation</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure that you want to delete this item?
-      </div>
-      <div class="modal-footer">
-        <button [ngStyle]="{'background-color':'green'}" type="button" class="btn btn-secondary"
-          data-bs-dismiss="modal">Close</button>
-        <button [ngStyle]="{'background-color':'red'}" (click)="confirmDelete()" type="button" class="btn btn-primary"
-          data-bs-dismiss="modal">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
