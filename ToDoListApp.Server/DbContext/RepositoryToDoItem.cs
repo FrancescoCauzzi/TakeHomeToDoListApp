@@ -12,7 +12,7 @@ namespace ToDoListApp.Server.DbContext
         {
             _db = myDb;
         }
-        public OperationResult AddEntity(ToDoItem entity)
+        public DataOperationResult<ToDoItem> AddEntity(ToDoItem entity)
         {
             try
             {
@@ -25,14 +25,14 @@ namespace ToDoListApp.Server.DbContext
                 _db.ToDoItems.Add(toDoItem);
                 _db.SaveChanges();
 
-                return new OperationResult(true, "Item added successfully.");
+                return new DataOperationResult<ToDoItem>(true, "Item added successfully.", toDoItem);
             }
             catch (Exception ex)
             {
                 // Log the exception
                 // Example: _logger.LogError(ex, "Error adding new ToDoItem");
 
-                return new OperationResult(false, "An error occurred while adding the item.");
+                return new DataOperationResult<ToDoItem>(false, "An error occurred while adding the item.");
             }
         }
 

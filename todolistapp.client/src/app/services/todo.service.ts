@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ToDoItem } from 'src/app/ToDoItem';
+import { ToDoItem } from 'src/app/IToDoItem';
 import { Observable } from 'rxjs';
-import { CustomHttpResponse } from '../CustomHttpResponse';
+import { IHttpResponseItemList } from '../IHttpResponseItemList';
+import { IHttpResponseItem } from '../IHttpResponseItem';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +13,20 @@ export class TodoService {
 
   constructor(private http: HttpClient) {} // Inject HttpClient
 
-  getToDoItems(): Observable<CustomHttpResponse> {
+  // method to get all
+  getToDoItems(): Observable<IHttpResponseItemList> {
     // Return the Observable
-    return this.http.get<CustomHttpResponse>(this.apiUrl + 'GetAllToDoItems');
+    return this.http.get<IHttpResponseItemList>(
+      this.apiUrl + 'GetAllToDoItems'
+    );
   }
 
-  deleteToDoItem(todoItem: ToDoItem): Observable<CustomHttpResponse> {
+  deleteToDoItem(todoItem: ToDoItem): Observable<IHttpResponseItemList> {
     const url = `${this.apiUrl}Delete/${todoItem.id}`;
-    return this.http.delete<CustomHttpResponse>(url); // Return the Observable
+    return this.http.delete<IHttpResponseItemList>(url); // Return the Observable
+  }
+
+  addToDoItem(todoItem: ToDoItem): Observable<IHttpResponseItem> {
+    return this.http.post<IHttpResponseItem>(this.apiUrl + 'Post', todoItem); // Return the Observable
   }
 }

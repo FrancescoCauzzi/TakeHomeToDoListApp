@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { ToDoItem } from 'src/app/ToDoItem';
+import { ToDoItem } from 'src/app/IToDoItem';
 import { TodoService } from '../../services/todo.service';
-import { CustomHttpResponse } from 'src/app/CustomHttpResponse';
-import { ITodoNoId } from 'src/app/ITodoNoId';
+import { IHttpResponseItemList } from 'src/app/IHttpResponseItemList';
+import { IHttpResponseItem } from 'src/app/IHttpResponseItem';
+//import { ITodoNoId } from 'src/app/ITodoNoId';
 
 @Component({
   selector: 'app-to-do-items',
@@ -26,7 +27,7 @@ export class ToDoItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.toDoService.getToDoItems().subscribe(
-      (httpResponse: CustomHttpResponse) => {
+      (httpResponse: IHttpResponseItemList) => {
         // Check if the response is successful and has data
         if (httpResponse.success && httpResponse.data) {
           this.toDos = httpResponse.data;
@@ -73,7 +74,19 @@ export class ToDoItemsComponent implements OnInit {
     }
   }
 
-  addTodo(todo: ITodoNoId) {
-    console.log(todo);
+  addTodo(item: ToDoItem) {
+    this.toDoService.addToDoItem(item).subscribe(
+      (response: IHttpResponseItem) => {
+        if (response.success) {
+          console.log(response.item);
+          this.toDos.push(response.item);
+        } else {
+          console.error('Failed to add item:', response.message);
+        }
+      },
+      (error) => {
+        console.error('Error adding item:', error);
+      }
+    );
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ITodoNoId } from 'src/app/ITodoNoId';
+import { ToDoItem } from 'src/app/IToDoItem';
 
 @Component({
   selector: 'app-add-todo-item',
@@ -7,7 +7,7 @@ import { ITodoNoId } from 'src/app/ITodoNoId';
   styleUrls: ['./add-todo-item.component.scss'],
 })
 export class AddTodoItemComponent implements OnInit {
-  @Output() onAddTodo: EventEmitter<ITodoNoId> = new EventEmitter();
+  @Output() onAddTodo: EventEmitter<ToDoItem> = new EventEmitter();
   title: string = '';
   content: string = '';
 

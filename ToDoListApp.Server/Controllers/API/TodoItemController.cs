@@ -99,7 +99,8 @@ namespace ToDoListApp.Server.Controllers.API
                 var response = new
                 {
                     success = result.Success,
-                    message = result.Message
+                    message = result.Message,
+                    item = result.Data,
                 };
 
             
