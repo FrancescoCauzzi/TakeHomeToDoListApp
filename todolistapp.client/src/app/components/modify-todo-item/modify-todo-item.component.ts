@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+} from '@angular/core';
 import { ToDoItem } from 'src/app/IToDoItem';
 
 @Component({
@@ -6,14 +12,20 @@ import { ToDoItem } from 'src/app/IToDoItem';
   templateUrl: './modify-todo-item.component.html',
   styleUrls: ['./modify-todo-item.component.scss'],
 })
-export class ModifyTodoItemComponent {
+export class ModifyTodoItemComponent implements OnChanges {
+  title: string = '';
+  content: string = '';
+
   @Output() onModifyTodo: EventEmitter<ToDoItem> = new EventEmitter();
   @Input() itemToModify: ToDoItem = {
     title: '',
     content: '',
   };
-  title: string = '';
-  content: string = '';
+
+  ngOnChanges() {
+    this.title = this.itemToModify.title;
+    this.content = this.itemToModify.content;
+  }
 
   onSubmit() {
     if (!this.title || !this.content) {

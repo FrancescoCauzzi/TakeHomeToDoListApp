@@ -75,11 +75,9 @@ export class ToDoItemsComponent implements OnInit {
   }
 
   modifyTodo(toDoItem: ToDoItem) {
-    console.log('I triggered this method' + toDoItem.title);
     this.toDoService.editToDoItem(toDoItem).subscribe(
       (response: IHttpResponseItem) => {
         if (response.success) {
-          console.log(response.item);
           this.toDos = this.toDos.map((t) =>
             t.id === response.item.id ? response.item : t
           );

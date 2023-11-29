@@ -9,13 +9,14 @@
       <div class="modal-body">
         <form class="mb-3" (ngSubmit)="onSubmit()">
           <div class="mb-3">
-            <label for="text" class="form-label fw-bold">Title</label>
-            <input class="form-control" type="text" name="title" id="title" [(ngModel)]="title" placeholder="Add ToDo">
+            <label for="title" class="form-label fw-bold">Title</label>
+            <input class="form-control" type="text" name="title" id="title" [(ngModel)]="title" placeholder="Edit ToDo"
+              [value]="itemToModify.title">
           </div>
           <div class="mb-3">
             <label for="content" class="form-label  fw-bold">Content</label>
             <input class="form-control" type="text" name="content" id="content" [(ngModel)]="content"
-              placeholder="Add Content">
+              placeholder="Edit Content">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -33,11 +33,6 @@ export class TodoService {
 
   // UPDATE
   editToDoItem(todoItem: ToDoItem): Observable<IHttpResponseItem> {
-    console.log(todoItem);
-    console.log(todoItem.id);
-    console.log(todoItem.title);
-    console.log(todoItem.content);
-
     const url = `${this.apiUrl}Update/${todoItem.id}`; // Construct the URL with the item ID
     return this.http.put<IHttpResponseItem>(url, todoItem);
   }
