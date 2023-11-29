@@ -1,11 +1,11 @@
 ﻿// Define variables for header, main, and footer heights
-$header-height: 60px;
-$footer-height: 53px;
-$main-height: calc(100vh - ($header-height + $footer-height));
+$header-height: 7vh;
+$footer-height: 5vh;
+$main-height: calc(100vh - ($header-height + $footer-height - 2px));
 
 // Use these variables in your SCSS code
 header {
-  min-height: $header-height;
+  height: $header-height;
   margin-bottom: -4px;
 }
 

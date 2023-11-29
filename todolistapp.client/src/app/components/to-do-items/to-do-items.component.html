@@ -18,7 +18,7 @@
       <td>{{ item.title }}</td>
       <td>{{ item.content }}</td>
       <td>{{ item.id }}</td>
-      <td class="d-flex gap-3">
+      <td class="d-flex gap-1">
         <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon" data-bs-toggle="modal"
           [attr.data-bs-target]="'#staticBackdropModify-' + item.id"></fa-icon>
         <app-modify-todo-item [itemToModify]="item" (onModifyTodo)="modifyTodo($event)"></app-modify-todo-item>
