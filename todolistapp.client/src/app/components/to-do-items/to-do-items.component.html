@@ -20,10 +20,10 @@
       <td>{{ item.id }}</td>
       <td class="d-flex gap-3">
         <fa-icon [ngStyle]="{'color' : 'green'}" [icon]="faPenToSquare" class="__fa-icon" data-bs-toggle="modal"
-          data-bs-target="#staticBackdropEdit"></fa-icon>
-        <app-modify-todo-item></app-modify-todo-item>
+          [attr.data-bs-target]="'#staticBackdropModify-' + item.id"></fa-icon>
+        <app-modify-todo-item [itemToModify]="item" (onModifyTodo)="modifyTodo($event)"></app-modify-todo-item>
         <fa-icon [ngStyle]="{'color' : ' red'}" [icon]="faTrashCan" class="__fa-icon" data-bs-toggle="modal"
-          [attr.data-bs-target]="'#staticBackdrop-' + item.id">
+          [attr.data-bs-target]="'#staticBackdropDelete-' + item.id">
         </fa-icon>
         <app-delete-todo-item [itemToDelete]="item" (deleteRequest)="onDelete($event)"></app-delete-todo-item>
       </td>

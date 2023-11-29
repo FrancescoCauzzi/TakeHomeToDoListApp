@@ -48,7 +48,7 @@ namespace ToDoListApp.Server.Controllers.API
 
         //UPDATE
         [HttpPut("{id}")]
-        public IActionResult UpdateToDoItem(int id, [FromBody] ToDoItem modifiedItem)
+        public IActionResult Update(int id, [FromBody] ToDoItem modifiedItem)
         {
             // Validate the modified item
             if (modifiedItem == null)
@@ -63,6 +63,7 @@ namespace ToDoListApp.Server.Controllers.API
                 // Structuring the response
                 var response = new
                 {
+                    item = result.Data,
                     success = result.Success,
                     message = result.Message
                 };            

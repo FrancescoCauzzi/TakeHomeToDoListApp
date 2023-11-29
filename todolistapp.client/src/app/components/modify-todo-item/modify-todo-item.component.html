@@ -1,18 +1,30 @@
-<div class="modal fade" id="staticBackdropEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" [id]="'staticBackdropModify-' + itemToModify.id" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit this item</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form class="mb-3" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="text" class="form-label fw-bold">Title</label>
+            <input class="form-control" type="text" name="title" id="title" [(ngModel)]="title" placeholder="Add ToDo">
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label  fw-bold">Content</label>
+            <input class="form-control" type="text" name="content" id="content" [(ngModel)]="content"
+              placeholder="Add Content">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button data-bs-dismiss="modal" [ngStyle]="{'background-color':'green'}" type="button"
+              class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+
     </div>
   </div>
 </div>

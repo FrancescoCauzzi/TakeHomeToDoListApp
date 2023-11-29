@@ -14,7 +14,7 @@ namespace ToDoListApp.Server.DbContext
         DataOperationResult<T> AddEntity(T entity);
 
         // Modify Entity
-        OperationResult ModifyEntity(int id, T entity);
+        DataOperationResult<T> ModifyEntity(int id, T entity);
 
         // Delete an entity
         OperationResult DeleteEntity(int id);

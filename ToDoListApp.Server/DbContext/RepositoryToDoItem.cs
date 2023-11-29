@@ -101,28 +101,28 @@ namespace ToDoListApp.Server.DbContext
         }
         
 
-        public OperationResult ModifyEntity(int id, ToDoItem modifiedItem)
+        public DataOperationResult<ToDoItem> ModifyEntity(int id, ToDoItem modifiedItem)
         {
             try
             {
                 ToDoItem? itemToUpdate = _db.ToDoItems.FirstOrDefault(item => item.Id == id);
                 if (itemToUpdate == null)
                 {
-                    return new OperationResult(false, "Item not found.");
+                    return new DataOperationResult<ToDoItem>(false, "Item not found.");
                 }
 
                 itemToUpdate.Title = modifiedItem.Title;
                 itemToUpdate.Content = modifiedItem.Content;
 
                 _db.SaveChanges();
-                return new OperationResult(true, "Item updated successfully.");
+                return new DataOperationResult<ToDoItem>(true, "Item updated successfully.", itemToUpdate);
             }
             catch (Exception ex)
             {
                 // Log the exception
                 // Example: _logger.LogError(ex, "Error updating ToDoItem with ID {ItemId}", id);
 
-                return new OperationResult(false, "An error occurred while updating the item.");
+                return new DataOperationResult<ToDoItem>(false, "An error occurred while updating the item.");
             }
 
         }

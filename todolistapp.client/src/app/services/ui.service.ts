@@ -17,15 +17,15 @@ export class UiService {
     this.subject.next(this.showAddTodo);
   }
 
-  toggleEditTodo(): void {
-    this.showEditTodo = !this.showEditTodo;
-    this.subject.next(this.showEditTodo);
-  }
+  // toggleEditTodo(): void {
+  //   this.showEditTodo = !this.showEditTodo;
+  //   this.subject.next(this.showEditTodo);
+  // }
 
-  toggleDeleteTodo(): void {
-    this.showDeleteTodo = !this.showDeleteTodo;
-    this.subject.next(this.showDeleteTodo);
-  }
+  // toggleDeleteTodo(): void {
+  //   this.showDeleteTodo = !this.showDeleteTodo;
+  //   this.subject.next(this.showDeleteTodo);
+  // }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onToggle(): Observable<any> {
