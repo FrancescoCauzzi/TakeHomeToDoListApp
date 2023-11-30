@@ -9,6 +9,8 @@ namespace ToDoListApp.Server.Entities.Database
         public int Id { get; set; } // Now an auto-incrementing integer
         public string Title { get; set; } // No default value assigned
         public string Content { get; set; } // No default value assigned
-        
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
     }
 }

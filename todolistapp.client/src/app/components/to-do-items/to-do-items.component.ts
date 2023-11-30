@@ -5,8 +5,9 @@ import { ToDoItem } from 'src/app/IToDoItem';
 import { TodoService } from '../../services/todo.service';
 import { IHttpResponseItemList } from 'src/app/IHttpResponseItemList';
 import { IHttpResponseItem } from 'src/app/IHttpResponseItem';
-import { UiService } from 'src/app/services/ui.service';
+//import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-to-do-items',
@@ -15,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class ToDoItemsComponent implements OnInit {
   toDos: ToDoItem[] = [];
-  showDeleteTodo: boolean = false;
+  //showDeleteTodo: boolean = false;
   subscription: Subscription = new Subscription();
 
   @Input() toDoItem: ToDoItem = {
@@ -30,10 +31,24 @@ export class ToDoItemsComponent implements OnInit {
     content: '',
   };
 
-  constructor(private toDoService: TodoService, private uiService: UiService) {
-    this.subscription = this.uiService
-      .onToggle()
-      .subscribe((value) => (this.showDeleteTodo = value));
+  // constructor(private toDoService: TodoService, private uiService: UiService) {
+  //   this.subscription = this.uiService
+  //     .onToggle()
+  //     .subscribe((value) => (this.showDeleteTodo = value));
+  // }
+
+  constructor(private toDoService: TodoService) {}
+
+  // Inside your component class
+  formatDate(dateStr?: string): string {
+    if (dateStr === null || dateStr === undefined) {
+      return 'Date not available';
+    }
+    const date = new Date(dateStr);
+    const datePipe = new DatePipe('en-US');
+    const formattedDate = datePipe.transform(date, 'dd/MM/yy HH:mm');
+    // Check if the transformation returns null and handle it
+    return formattedDate ?? 'Invalid Date';
   }
 
   ngOnInit(): void {
